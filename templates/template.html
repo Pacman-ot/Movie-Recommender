@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <link rel="stylesheet" type="text/css" href="static/style.css">
+            </head>
+            <body>
+                <div class="movie-grid">
+                    {% for movie in movies %}
+                    <div class="movie-item">
+                        <div class="flip-card" onclick="flipCard('{{ movie.title }}')">
+                            <div class="flip-card-inner" id="{{ movie.title }}">
+                                <div class="flip-card-front" style="background-image: url('{{ movie.poster }}');"></div>
+                                <div class="flip-card-back">
+                                    <h4>{{ movie.title }}</h4>
+                                    <p>📅 {{ movie.release_date }}</p>
+                                    <p>⭐ {{ movie.rating }}/10</p>
+                                    <p>🎭 {{ movie.genres }}</p>
+                                    <p style="font-size: 12px;">📝 {{ movie.overview }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <script>
+                    function flipCard(movieId) {
+                        let card = document.getElementById(movieId);
+                        if (card.style.transform === "rotateY(180deg)") {
+                            card.style.transform = "rotateY(0deg)";
+                        } else {
+                            card.style.transform = "rotateY(180deg)";
+                        }
+                    }
+                </script>
+            </body>
+            </html>
